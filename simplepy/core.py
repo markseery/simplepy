@@ -49,9 +49,14 @@ class Core:
         self.configuration = config._sections['PARAMETERS']
 
     def log(self,type,logMessage,className):
-        if (type.upper()=='INFO') and (self.configuration['infologging'].upper()=="YES"):
+        if (type.upper()=='INFO'):
+            if (self.configuration['infologging'].upper()=="YES"):
+                print(type," - ",datetime.now()," Log Message (",className,") :")
+                print("  ", logMessage)
+        else:
             print(type," - ",datetime.now()," Log Message (",className,") :")
             print("  ", logMessage)
+
 
     def getName(self, className):
         # Use stack to get the name of classes, functions, etc.

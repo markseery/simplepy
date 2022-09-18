@@ -36,22 +36,42 @@
 #
 ##########################################################################
 
+from simplepy.os import OS
 from simplepy.core import Core
 from simplepy.networking import Networking
+from simplepy.convert import Convert
+from simplepy.clock import Clock
+
+import simplepy
 
 class Simplepy:
-    logInfo = Core().logInfo
-    logWarn = Core().logWarn
+    logInfo = simplepy.core.Core().logInfo
+    logWarn = simplepy.core.Core().logWarn
 
     #   Initialize class
     def __init__(self):
         pass
 
+    # os calls
+    def threadPool(self,func,arguments):
+        return OS().threadPool(func,arguments)
+
+    # clock calls
+    def isInBetween(self,start,end,test): return Clock().isInBetween(start,end,test)
+    def nowHour(self): return Clock().nowHour()
+
     # log calls
     def log(self,type,logMessage,className):
-        Core().log(Core().logInfo, logMessage, '__main__')
+        return Core().log(type, logMessage, '__main__')
 
     # networking calls
-    def sendMail(self,sender,receivers,subject,text,html,user,password):
-        Networking().sendMail(sender,receivers,subject,text,html,user,password)
+    def isUrlReachable(self,url): return Networking().isUrlReachable(url)
+
+    def sendMail(self,service,sender,receivers,subject,text,html,user,password):
+        return Networking().sendMail(service,sender,receivers,subject,text,html,user,password)
+
+    # conversions
+    def jsonToDict(self,fileName,key=""):
+        return Convert().jsonToDict(fileName,key)
+
 

@@ -23,19 +23,33 @@
 #output = test.communicate()[0]
 #print(output)
 
-from simplepy.core import Core
+import simplepy
+import json
 
 class Convert:
     className = ""
     myClass = ''
-    util = Core()
+
 
     def __init__(self):
         self.myClass = str(__class__)
-        Core().log(Core.logInfo,'Initializing: ' + str(__class__),self.myClass)
+        simplepy.simplepy.Simplepy().log("Info",'Initializing: ' + str(__class__),self.myClass)
 
     def printRequirements(self):
         print("Pandas")
+
+    def jsonToDict(self,fileName,key=""): 
+        file = open(fileName)
+        jsonDict = json.load(file)
+
+        print("Key: ", key)
+
+        if key != "":
+            print(jsonDict[key])
+            return jsonDict[key]
+        else:
+            print(jsonDict)
+            return jsonDict
 
     def csvToExcel(self,inName: str, outName: str):
         print('csv to excel: ', inName, " , " , outName)

@@ -29,7 +29,23 @@ class Networking:
     def __init__(self):
         pass
 
-    def sendMail(self,sender,receivers,subject,text,html,user,password):
+    def isUrlReachable(self,url):
+        import subprocess
+        ip = url
+        ret = subprocess.call("ping -c 1 %s" % ip,
+            shell=True,
+            stdout=open('/dev/null', 'w'),
+            stderr=subprocess.STDOUT)
+        if ret == 0:
+            return True
+        else:
+            return False
+
+    def sendMail(self,service,sender,receivers,subject,text,html,user,password):
+ 
+        if service.upper() != "GMAIL":
+            simplepy.simplepy.Simplepy().log("Error","Email service name invalid: "+service,__class__)
+            return -1
 
         # me == my email address
         # you == recipient's email address
