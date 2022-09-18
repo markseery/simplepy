@@ -79,6 +79,8 @@ class Simplepy:
     # clock calls
     def isBetween(self,start,end,test): return Clock().isBetween(start,end,test)
     def nowHour(self): return Clock().nowHour()
+    def nowDay(self): return Clock().nowDay()
+    def dayOfWeek(self): return Clock().dayOfWeek()
 
     # log calls
     def log(self,type,logMessage,className): return Core().log(type, logMessage, '__main__')

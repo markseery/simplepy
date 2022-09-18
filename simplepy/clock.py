@@ -19,6 +19,8 @@
 
 import simplepy
 import datetime
+from datetime import date
+import calendar
 
 class Clock:
 
@@ -37,3 +39,5 @@ class Clock:
     def isBetween(self,start,end,test):
         if (test > start) and (test < end): return True
         else: return False
+
+    def dayOfWeek(self): return calendar.day_name[date.today().weekday()]
