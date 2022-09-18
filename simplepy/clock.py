@@ -34,6 +34,6 @@ class Clock:
     def nowSecond(self): return self.nowDateTime().second
     def nowMicroSecond(self): return self.nowDateTime().microsecond
 
-    def isInBetween(self,start,end,test):
+    def isBetween(self,start,end,test):
         if (test > start) and (test < end): return True
         else: return False

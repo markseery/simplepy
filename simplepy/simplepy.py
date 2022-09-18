@@ -77,7 +77,7 @@ class Simplepy:
     def threadPool(self,func,arguments): return OS().threadPool(func,arguments)
 
     # clock calls
-    def isInBetween(self,start,end,test): return Clock().isInBetween(start,end,test)
+    def isBetween(self,start,end,test): return Clock().isBetween(start,end,test)
     def nowHour(self): return Clock().nowHour()
 
     # log calls
