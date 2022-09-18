@@ -19,11 +19,14 @@
 
 import simplepy
 import sqlite3
+from pathlib import Path
 
 class Storage:
 
     def __init__(self):
         pass
+
+    def fileExists(self,fileName): return Path(fileName).is_file()
 
     def  createStorage(name):
         conn = sqlite3.connect(name+'db')

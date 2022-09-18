@@ -36,33 +36,52 @@
 #
 ##########################################################################
 
+import simplepy
 from simplepy.os import OS
 from simplepy.core import Core
 from simplepy.networking import Networking
 from simplepy.convert import Convert
 from simplepy.clock import Clock
 
-import simplepy
+from functools import reduce
 
 class Simplepy:
     logInfo = simplepy.core.Core().logInfo
     logWarn = simplepy.core.Core().logWarn
+    
+
+    # lambda functions
+    add = lambda self, x, y: x + y
+    increment = lambda self, x: x + 1
+    sqr = lambda self, x: x * x
+    isOdd = lambda self, x: (x % 2 != 0)
+    isEven = lambda self, x: (x % 2 == 0)
+    
+
+    #isGreaterThan = lambda self,x,y: x > y
 
     #   Initialize class
     def __init__(self):
         pass
 
+    # Simple filter routines
+    def filterEvens(self,li): return list(filter(self.isEven, li))
+    def filterOdds(self,li): return list(filter(self.isOdd, li))
+
+    # Simple list routines
+    def mapList(self,li): return map(lambda x, y: x*y, li)
+    def reduceList(self,li): return reduce(lambda x, y: x*y, li)
+    def printList(self,li): return list(map(lambda x:print(x),li))
+
     # os calls
-    def threadPool(self,func,arguments):
-        return OS().threadPool(func,arguments)
+    def threadPool(self,func,arguments): return OS().threadPool(func,arguments)
 
     # clock calls
     def isInBetween(self,start,end,test): return Clock().isInBetween(start,end,test)
     def nowHour(self): return Clock().nowHour()
 
     # log calls
-    def log(self,type,logMessage,className):
-        return Core().log(type, logMessage, '__main__')
+    def log(self,type,logMessage,className): return Core().log(type, logMessage, '__main__')
 
     # networking calls
     def isUrlReachable(self,url): return Networking().isUrlReachable(url)
@@ -71,7 +90,6 @@ class Simplepy:
         return Networking().sendMail(service,sender,receivers,subject,text,html,user,password)
 
     # conversions
-    def jsonToDict(self,fileName,key=""):
-        return Convert().jsonToDict(fileName,key)
+    def jsonToDict(self,fileName,key=""): return Convert().jsonToDict(fileName,key)
 
 
